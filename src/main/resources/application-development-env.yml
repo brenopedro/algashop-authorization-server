@@ -14,9 +14,12 @@ spring:
               scopes:
                 - products:read
                 - products:write
+                - products:stock:write
+                - categories:read
+                - categories:write
             token:
               access-token-time-to-live: 15m
-              access-token-format: reference
+#              access-token-format: reference
           algashop-ordering-service-client:
             registration:
               client-id: algashop-ordering-service
@@ -30,3 +33,4 @@ spring:
             token:
               access-token-time-to-live: 5m
               access-token-format: self-contained
+        issuer: http://algashop-authorization-server:8081
