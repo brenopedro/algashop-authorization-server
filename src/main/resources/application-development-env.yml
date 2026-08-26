@@ -17,9 +17,13 @@ spring:
                 - products:stock:write
                 - categories:read
                 - categories:write
+                - invoices:read
+                - invoices:write
+                - credit-cards:read
+                - credit-cards:write
             token:
               access-token-time-to-live: 15m
-#              access-token-format: reference
+          #              access-token-format: reference
           algashop-ordering-service-client:
             registration:
               client-id: algashop-ordering-service
@@ -30,6 +34,26 @@ spring:
               client-secret: "{noop}secret123"
               scopes:
                 - products:read
+                - products:write
+                - products:stock:write
+                - categories:read
+                - categories:write
+            token:
+              access-token-time-to-live: 5m
+              access-token-format: self-contained
+          algashop-billing-service-client:
+            registration:
+              client-id: algashop-billing-service
+              authorization-grant-types:
+                - client_credentials
+              client-authentication-methods:
+                - client_secret_basic
+              client-secret: "{noop}secret124"
+              scopes:
+                - invoices:read
+                - invoices:write
+                - credit-cards:read
+                - creadit-cards-write
             token:
               access-token-time-to-live: 5m
               access-token-format: self-contained
