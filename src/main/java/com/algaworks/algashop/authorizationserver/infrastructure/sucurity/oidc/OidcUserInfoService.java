@@ -1,4 +1,4 @@
-package com.algaworks.algashop.authorizationserver.infrastructure.sucurity;
+package com.algaworks.algashop.authorizationserver.infrastructure.sucurity.oidc;
 
 import com.algaworks.algashop.authorizationserver.domain.model.AuthUser;
 import com.algaworks.algashop.authorizationserver.domain.model.AuthUserRepository;
@@ -22,7 +22,7 @@ public class OidcUserInfoService {
                 .name(user.getName())
                 .email(user.getEmail())
                 .claim("type", user.getType().name())
-                .claim("created_at", user.getCreatedAt().toEpochSecond())
+                .claim("created_at", String.valueOf(user.getCreatedAt().toEpochSecond()))
                 .build();
     }
 }
