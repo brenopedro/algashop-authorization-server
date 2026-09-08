@@ -1,4 +1,4 @@
-package com.algaworks.algashop.authorizationserver.infrastructure.sucurity.oidc;
+package com.algaworks.algashop.authorizationserver.infrastructure.security.oidc;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

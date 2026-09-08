@@ -1,6 +1,6 @@
-package com.algaworks.algashop.authorizationserver.infrastructure.sucurity.oidc;
+package com.algaworks.algashop.authorizationserver.infrastructure.security.oidc;
 
-import com.algaworks.algashop.authorizationserver.infrastructure.sucurity.query.OAuth2AuthorizationQueryService;
+import com.algaworks.algashop.authorizationserver.infrastructure.security.query.OAuth2AuthorizationQueryService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;

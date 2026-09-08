@@ -1,6 +1,6 @@
 package com.algaworks.algashop.authorizationserver.infrastructure.persistence;
 
-import com.algaworks.algashop.authorizationserver.infrastructure.sucurity.query.OAuth2AuthorizationQueryService;
+import com.algaworks.algashop.authorizationserver.infrastructure.security.query.OAuth2AuthorizationQueryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcOperations;
 import org.springframework.stereotype.Service;

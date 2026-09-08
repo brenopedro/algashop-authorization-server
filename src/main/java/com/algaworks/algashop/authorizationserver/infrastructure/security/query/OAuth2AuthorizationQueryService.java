@@ -1,4 +1,4 @@
-package com.algaworks.algashop.authorizationserver.infrastructure.sucurity.query;
+package com.algaworks.algashop.authorizationserver.infrastructure.security.query;
 
 import java.util.List;
 
