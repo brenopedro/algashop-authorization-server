@@ -7,4 +7,5 @@ public interface SecurityCheckApplicationService {
     UUID getAuthenticatedUserId();
     boolean isAuthenticated();
     boolean isMachineAuthenticated();
+    boolean canAccessOwnProfile();
 }

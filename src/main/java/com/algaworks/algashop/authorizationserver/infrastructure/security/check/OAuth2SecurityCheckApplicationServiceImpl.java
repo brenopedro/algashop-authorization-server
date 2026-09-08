@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.UUID;
 
 @Slf4j
-@Service
+@Service("securityCheck")
 public class OAuth2SecurityCheckApplicationServiceImpl implements SecurityCheckApplicationService {
 
     @Override
@@ -48,6 +48,11 @@ public class OAuth2SecurityCheckApplicationServiceImpl implements SecurityCheckA
             return false;
         }
         return jwt.getAudience().contains(jwt.getSubject());
+    }
+
+    @Override
+    public boolean canAccessOwnProfile() {
+        return this.isAuthenticated() && !this.isMachineAuthenticated();
     }
 
     private Jwt getJwt() {
