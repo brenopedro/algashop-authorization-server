@@ -1,22 +1,9 @@
 package com.algaworks.algashop.authorizationserver.application.user.query;
 
-import com.algaworks.algashop.authorizationserver.domain.model.user.AuthUserRepository;
-import jakarta.transaction.Transactional;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-
 import java.util.UUID;
 
-@Service
-@Transactional
-@RequiredArgsConstructor
-public class AuthUserQueryService {
+public interface AuthUserQueryService {
 
-    private final AuthUserRepository authUserRepository;
-
-    public AuthUserOutput findById(UUID userId) {
-        return authUserRepository.findById(userId)
-                .map(AuthUserOutput::from)
-                .orElseThrow(() -> new AuthUserNotFoundException(userId));
-    }
+    AuthUserOutput findById(UUID userId);
+    PageModel<AuthUserOutput> findAll(AuthUserFilter filter);
 }

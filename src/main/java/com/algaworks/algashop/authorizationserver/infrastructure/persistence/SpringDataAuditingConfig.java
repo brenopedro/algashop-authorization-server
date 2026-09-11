@@ -1,4 +1,4 @@
-package com.algaworks.algashop.authorizationserver.infrastructure.security.persistence;
+package com.algaworks.algashop.authorizationserver.infrastructure.persistence;
 
 import com.algaworks.algashop.authorizationserver.application.security.SecurityCheckApplicationService;
 import org.springframework.context.annotation.Bean;
