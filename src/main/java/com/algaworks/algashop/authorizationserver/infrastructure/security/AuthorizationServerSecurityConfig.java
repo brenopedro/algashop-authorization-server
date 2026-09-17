@@ -11,6 +11,7 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.annotation.web.configurers.oauth2.server.authorization.OAuth2AuthorizationServerConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.oauth2.server.authorization.oidc.web.authentication.OidcLogoutAuthenticationSuccessHandler;
@@ -27,6 +28,7 @@ public class AuthorizationServerSecurityConfig {
 
     private final OidcUserInfoMapper oidcUserInfoMapper;
     private final OidcLogoutAuthenticationSuccessHandler oidcLogoutAuthenticationSuccessHandler;
+    private final AlgaShopSecurityProperties properties;
 
     @Bean
     @Order(1)
@@ -35,6 +37,11 @@ public class AuthorizationServerSecurityConfig {
 
 
         httpSecurity.securityMatcher(authorizationServer.getEndpointsMatcher())
+                .cors(Customizer.withDefaults())
+                .headers(headers -> {
+                    AlgaShopSecurityProperties.CspProperties csp = properties.getCsp();
+                    headers.contentSecurityPolicy(c -> c.policyDirectives(csp.getPolicyDirectives()));
+                })
                 .with(authorizationServer, configurer -> configurer.oidc(
                         oidcConfigurer -> oidcConfigurer
                                 .logoutEndpoint(logout -> logout.logoutResponseHandler(oidcLogoutAuthenticationSuccessHandler))
@@ -54,8 +61,8 @@ public class AuthorizationServerSecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/actuator/health/**").permitAll()
                         .anyRequest().authenticated())
-                .csrf(csrf -> csrf.disable())
-                .cors(cors -> cors.disable())
+                .csrf(AbstractHttpConfigurer::disable)
+                .cors(Customizer.withDefaults())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()));
 
